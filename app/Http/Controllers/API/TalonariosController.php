@@ -255,7 +255,7 @@ class TalonariosController extends BaseController
 
         if(!empty($take_numbers)){
             $participants = Participants::where('ci', $request->ci)->first();
-
+            $dato = Talonarios::where('id', $request->id)->first();
             $fecha = date('dmY'); // 8 dígitos
             $aleatorio = mt_rand(10, 99); // 2 dígitos aleatorios
             $codigo = $fecha . $aleatorio; // 10 dígitos total
@@ -289,6 +289,7 @@ class TalonariosController extends BaseController
             if($pago->save()){
                 $data = [
                     'type' => "compra",
+                    'rifa' => $dato->title,
                     'pedido' => $pago->code,
                     'fecha' => $pago->created_at,
                     'monto'=> $pago->numbers,

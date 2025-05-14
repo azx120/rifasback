@@ -110,6 +110,11 @@ class PHPMailerController extends Controller {
                                     
                                     <div class="order-info">
                                         <div class="info-row">
+                                            <div class="info-label">Sorteo:</div>
+                                            <div class="info-value">'.$data['rifa'].'</div>
+                                        </div>
+                                         <hr/>
+                                        <div class="info-row">
                                             <div class="info-label">Número de pedido:</div>
                                             <div class="info-value order-number">'.$data['pedido'].'</div>
                                         </div>
@@ -202,6 +207,10 @@ class PHPMailerController extends Controller {
                                     <h1>¡Gracias! Tu compra ha sido recibida '.$data['names'].'.</h1>
                                     
                                     <div class="order-info">
+                                        <div class="info-row">
+                                            <div class="info-label">Sorteo:</div>
+                                            <div class="info-value">'.$data['rifa'].'</div>
+                                        </div>
                                         <div class="info-row">
                                             <div class="info-label">Número de pedido:</div>
                                             <div class="info-value order-number">'.$data['pedido'].'</div>
