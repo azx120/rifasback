@@ -239,6 +239,85 @@ class PHPMailerController extends Controller {
                 //$mail->Body    = 'Se ah registrado una nueva compra con ls sigueinete informacion:';
                 $mail->Body    = $html;
 
+            }else if($data['type']  == 'ganador'){
+                $mail->addAddress($data['email']);
+                $mail->Subject = 'Felicidades ganaste!';
+                $html  = '<html>
+                                <head>
+                                    <style>
+                                        body {
+                                            font-family: Arial, sans-serif;
+                                            max-width: 600px;
+                                            margin: 0 auto;
+                                            padding: 20px;
+                                            color: #333;
+                                        }
+                                        h1 {
+                                            color: #2c3e50;
+                                            font-size: 24px;
+                                            margin-bottom: 20px;
+                                        }
+                                        .order-info {
+                                            margin-bottom: 30px;
+                                        }
+                                        .info-row {
+                                            display: flex;
+                                            margin-bottom: 10px;
+                                        }
+                                        .info-label {
+                                            font-weight: bold;
+                                            width: 150px;
+                                        }
+                                        .info-value {
+                                            flex-grow: 1;
+                                        }
+                                        .order-number {
+                                            color: red;
+                                            font-weight: bold;
+                                        }
+                                        hr {
+                                            border: 0;
+                                            height: 1px;
+                                            background-color: #ddd;
+                                            margin: 20px 0;
+                                        }
+                                        .payment-instructions {
+                                            margin-top: 20px;
+                                        }
+                                        .payment-instructions ol {
+                                            padding-left: 20px;
+                                        }
+                                        .payment-instructions li {
+                                            margin-bottom: 10px;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <h1>Felicidades! '.$data['names'].' has obtenido un numero ganador:</h1>
+                                    
+                                    <div class="order-info">
+                                        <div class="info-row">
+                                            <div class="info-label">Sorteo:</div>
+                                            <div class="info-value">'.$data['rifa'].'</div>
+                                        </div>
+                                        <div class="info-row">
+                                            <div class="info-label">Número Ganador:</div>
+                                            <div class="info-value order-number">'.$data['numero'].'</div>
+                                        </div>
+                                        <hr/>
+                                        <div class="info-row">
+                                            <div class="info-label">Fecha:</div>
+                                            <div class="info-value">'.$data['fecha'].'</div>
+                                        </div>
+        
+                                    </div>
+                                </body>
+                                </html>';
+
+                                $mail->isHTML(true);                // Set email content format to HTML
+                //$mail->Body    = 'Se ah registrado una nueva compra con ls sigueinete informacion:';
+                $mail->Body    = $html;
+
             }
             //$mail->addBCC('lololol');
  

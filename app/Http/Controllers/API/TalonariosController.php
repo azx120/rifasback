@@ -32,7 +32,9 @@ class TalonariosController extends BaseController
         $tickets_temp = 0;
         $participants_temp = [];
         $talonario->array_numbers = json_decode($talonario->array_numbers);
+        $talonario->winners = json_decode($talonario->winners);
         $talonario->gallery = json_decode($talonario->gallery);
+
         foreach($talonario->array_numbers as $tickets){
             if ($tickets->participant != ''){
                 $tickets_temp = $tickets_temp + 1;
@@ -45,6 +47,7 @@ class TalonariosController extends BaseController
         foreach($talonario->gallery as $gallery){
             $gallery->url = url('/').$gallery->url;
         }
+        $talonario->array_numbers = [];
         $talonario->participants = count(array_unique($participants_temp));
         $talonario->imageUrl = url('/').$talonario->imageUrl;
         $talonario->tickets_sell = $tickets_temp;

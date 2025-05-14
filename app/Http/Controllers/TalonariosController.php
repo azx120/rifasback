@@ -637,10 +637,12 @@ class TalonariosController extends Controller
                 }
             }
 
-            /*/ Mostrar los ganadores
+         // Mostrar los ganadores
             $winners = array_filter($new_array, function($item) {
                 return $item['winner'] === true;
-            });*/
+            });
+
+            $talonario->winners = json_encode(array_values($winners));
             
             $talonario->array_numbers = json_encode($new_array);
             //$talonario->status = 0;
@@ -688,7 +690,8 @@ class TalonariosController extends Controller
 
         $talonario = Talonarios::where('id', $request->id)->first();
         //$talonario = Talonarios::where('id', $request->id)->where('status', 1)->first();
-
+        $winner = "";
+        $ci_participan = "";
 
         if(!empty($talonario)){
             $new_array = json_decode($talonario->array_numbers);
@@ -701,6 +704,8 @@ class TalonariosController extends Controller
                             $numero->winner = true;
                             if($request->type == 'winner'){
                                 $numero->status = "winner plus";
+                                $winner = $numero->id;
+                                $ci_participan = $numero->participant;
                             }else{
                                 $numero->status = "winner";
                             }
@@ -712,6 +717,22 @@ class TalonariosController extends Controller
             $talonario->array_numbers = json_encode($new_array);
             //$talonario->status = 0;
             $talonario->save();
+
+            $participants = Participants::where('ci', $ci_participan)->first();
+            if(!empty($participants)){
+                $data = [
+                    'type' => "ganador",
+                    'rifa' => $talonario->title,
+                    'fecha' => $talonario->updated_at,
+                    'numero'=>  $winner,
+                    'email' => $participants->email,
+                    'names' => $participants->name.' '.$participants->lastname,
+                ];
+                
+                PHPMailerController::composeEmail($data);
+            }
+
+
 
             $datoBitacoras = New Bitacoras();
             $datoBitacoras->id_user = Auth::id();
