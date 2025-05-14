@@ -103,6 +103,7 @@ class TalonariosController extends BaseController
                 'msj' => $get_numbers,
                 'rifa' => $data->title,
                 'email' => $participant->email,
+                'names' => $participant->name.' '.$participant->lastname,
                 'pedido' => $pago->code,
                 'fecha' => $pago->created_at,
                 'monto'=> $pago->numbers,
@@ -293,7 +294,8 @@ class TalonariosController extends BaseController
                     'monto'=> $pago->numbers,
                     'qty'=> $pago->numbers,
                     'metodo' => 'Transferencia bancaria o depósito',
-                    'email' => $participants->email
+                    'email' => $participants->email,
+                    'names' => $participants->name.' '.$participants->lastname,
                 ];
                 
                 PHPMailerController::composeEmail($data);

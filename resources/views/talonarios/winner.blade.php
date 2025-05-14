@@ -167,19 +167,20 @@
         <div class="mb-3 mt5">
             <form class="row g-3" method="POST"  action="{{ url('talonarios/get-winner-manual') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="col-6">
+                <div class="col-12">
                     <label for="selectedNumbers" class="form-label">Numeros Selecionados</label>
                     <input type="text" class="form-control form-control-sm" id="selectedNumbers" name='numbers' readonly required>
                     <input type="hidden" class="form-control form-control-sm" value='{{$data->id}}' name='id' required>
+                    <input type="hidden" class="form-control form-control-sm" value='winner' name='type' required>
                 </div>
-                <div class="col-6">
+                <!--<div class="col-6">
                     <label for="selectedNumbers" class="form-label">Tipo de premio</label>
                     <select class="form-select" aria-label="Default select example" name="type" required>
                         <option value="">Selecionar</option>
                         <option value="consolation">Instantaneo</option>
                         <option value="winner">Gran Ganador</option>
                     </select>
-                </div>
+                </div>-->
                 
                 <div class="">
                     <button class="btn btn-primary">Enviar</button>
@@ -251,7 +252,7 @@
                             .attr('title', `Reservado por: ${numberData.participant}`)
                             .appendTo(numberElement);
                             numberElement.on('click', function() {
-                        //toggleNumber(numberData.id);
+                        toggleNumber(numberData.id);
                     });
                     }
                 }else if (numberData.status == 'winner plus') {
@@ -269,7 +270,7 @@
                         .attr('title', `Comprado por: ${numberData.participant}`)
                         .appendTo(numberElement);
                         numberElement.on('click', function() {
-                        //toggleNumber(numberData.id);
+                        toggleNumber(numberData.id);
                     });
 
                 }else if (numberData.status == 'sold') {
@@ -294,7 +295,7 @@
                         .attr('title', `Comprado por: ${numberData.participant}`)
                         .appendTo(numberElement);
                         numberElement.on('click', function() {
-                        //toggleNumber(numberData.id);
+                        toggleNumber(numberData.id);
                     });
                     }
                 }else {
@@ -312,11 +313,11 @@
                         .attr('title', `Comprado por: `)
                         .appendTo(numberElement);
                         numberElement.on('click', function() {
-                        //toggleNumber(numberData.id);
+                        toggleNumber(numberData.id);
                     });
                     }else{
                         numberElement.on('click', function() {
-                        //toggleNumber(numberData.id);
+                        toggleNumber(numberData.id);
                     });
                     }
                    

@@ -407,6 +407,7 @@ class TalonariosController extends Controller
                 'msj' => $get_numbers,
                 'rifa' => $dato->title,
                 'email' => $participants->email,
+                'names' => $participants->name.' '.$participants->lastname,
                 'pedido' => $pago->code,
                 'fecha' => $pago->created_at,
                 'monto'=> $pago->numbers,
@@ -426,7 +427,7 @@ class TalonariosController extends Controller
             $datoBitacoras->color = 'success';
             $datoBitacoras->comment = 'usuario '. Auth::user()->email. ' vendio numeros de la rifa '. $dato->title ;
             $datoBitacoras->save();
-            return redirect('/talonarios')->with('success', 'Registro Eliminado Exitosamente!');
+            return redirect('/talonarios/'.$request->id.'/ver-talonario')->with('success', 'Registro Exitoso!');
         }else{
             return redirect('/talonarios')->with('danger', 'Problemas para Eliminar el Registro.');
 

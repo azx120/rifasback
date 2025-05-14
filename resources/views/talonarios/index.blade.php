@@ -45,9 +45,10 @@
                           <i class="bi bi-trophy-fill"></i>
                           </button>
                           <ul class="dropdown-menu">
-                            <!-- <li><a class="dropdown-item" href="{{ url('talonarios/' . $rifa->id . '/selecionar-ganadores') }}">Manual</a></li>-->
+                            
                               <li><button class="btn get-winner" id_tal="{{$rifa->id}}">Intantaneros</button></li>
-                              <li><button class="btn get-great-winner" id_tal="{{$rifa->id}}">Gran Ganador</button></li>
+                              <li><a class="dropdown-item" href="{{ url('talonarios/' . $rifa->id . '/selecionar-ganadores') }}">Gran Ganador</a></li>
+                              <!-- <li><button class="btn get-great-winner" id_tal="{{$rifa->id}}">Gran Ganador</button></li>-->
                           </ul>
                         </div>
                         <a class="btn btn-outline-warning" href="{{ url('talonarios/' . $rifa->id . '/editar-talonario') }}"><i class="bi bi-pencil-fill"></i></a>
