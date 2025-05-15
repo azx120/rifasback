@@ -11,6 +11,8 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\TalonariosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ParticipantsController;
+use App\Http\Controllers\ExtrasController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,5 +97,8 @@ Route::get('pagos/{id}/editar-pago', [PagosController::class, 'edit'])->middlewa
 Route::post('pagos/{id}/actualizar-pago', [PagosController::class, 'update'])->middleware(['auth'])->name('pagos.update');
 
 Route::get('pagos/{id}/pagos-talonario', [PagosController::class, 'pagos'])->middleware(['auth'])->name('pagos.pagos');
+
+Route::get('banner', [ExtrasController::class, 'banner'])->middleware(['auth'])->name('banner');
+Route::post('banner/guardar-banner', [ExtrasController::class, 'store_banner'])->middleware(['auth'])->name('banner.store');
 
 require __DIR__.'/auth.php';

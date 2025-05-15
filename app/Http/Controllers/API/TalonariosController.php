@@ -434,4 +434,9 @@ class TalonariosController extends BaseController
 }
 
 /*setlocale(LC_TIME, "spanish");
-echo strftime("%A %d de %B del %Y");*/
+echo strftime("%A %d de %B del %Y");
+
+7p2UYQY7Be3cEQxkCWpR accumedi_agendamientos accumedi_agendamientos agendamientos
+H4ETBCBSFFTxuV7HfVZq accumedi_calificadora accumedi_calificadora
+
+*/

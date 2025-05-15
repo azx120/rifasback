@@ -32,6 +32,12 @@
       <span>Participantes</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{route('banner')}}">
+      <i class="bi bi-chat"></i>
+      <span>Banner</span>
+    </a>
+  </li>
  
 
 </ul>
