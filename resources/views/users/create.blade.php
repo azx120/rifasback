@@ -81,6 +81,7 @@
               <select class="form-control @error('rol') is-invalid @enderror" name="rol" id="rol" required>
                 <option value="" hidden>Seleccione un rol</option>
                 <option value="ADMIN">Administrador</option>
+                <option value="COLABORADOR">Colaborador</option>
     
               </select>
               @if ($errors->has('rol'))

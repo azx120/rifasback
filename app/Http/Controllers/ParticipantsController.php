@@ -159,6 +159,27 @@ class ParticipantsController extends Controller
        
     }
 
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_by_ci($ci)
+    {
+        $count = Participants::where('ci', $ci)->count();
+        if($count>0){
+            $data = Participants::where('ci', $ci)->first(); 
+            $ciudades = Ciudades::where('id', $data->city_id)->first(); 
+            $provincias = Provincias::where('id', $ciudades->id_provincia)->first(); 
+            $talonarios = Talonarios::where('array_numbers', 'LIKE', '%'.$data->ci.'%')->get();
+            return view('participants.show', compact('data', 'provincias', 'ciudades', 'talonarios'));
+        }else{
+            return redirect('/participants')->with('Error', 'Problemas para visualizar el registro');
+        }
+       
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

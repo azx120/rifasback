@@ -58,6 +58,7 @@ Route::get('participantes', [ParticipantsController::class, 'index'])->middlewar
 Route::get('participantes/nuevo-participante', [ParticipantsController::class, 'create'])->middleware(['auth'])->name('participantes.create');
 Route::post('participantes/guardar-participante', [ParticipantsController::class, 'store'])->middleware(['auth'])->name('participantes.store');
 Route::get('participantes/{id}/ver-participante', [ParticipantsController::class, 'show'])->middleware(['auth'])->name('participantes.show');
+Route::get('participantes/{ci}/ver-participante-cedula', [ParticipantsController::class, 'show_by_ci'])->middleware(['auth'])->name('participantes.show');
 Route::get('participantes/{id}/editar-participante', [ParticipantsController::class, 'edit'])->middleware(['auth'])->name('participantes.edit');
 Route::post('participantes/{id}/actualizar-participante', [ParticipantsController::class, 'update'])->middleware(['auth'])->name('participantes.update');
 Route::delete('participantes/{id}/eliminar-participante', [ParticipantsController::class, 'destroy'])->middleware(['auth'])->name('participantes.destroy');

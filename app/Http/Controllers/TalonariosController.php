@@ -99,6 +99,7 @@ class TalonariosController extends Controller
         $registro = new Talonarios();
         $registro->title = 	$request->title;
         $registro->price =	$request->price;
+        $registro->winners =	"[]";
         $registro->numbers	=	$request->numbers;
         $registro->endDate	=	$request->endDate;
         $registro->array_numbers = json_encode($array_numbers);
@@ -169,6 +170,7 @@ class TalonariosController extends Controller
         if ($count>0) {
             $data = Talonarios::where('id', $id)->first();
             $data->array_numbers = json_decode($data->array_numbers);
+            $data->winners = json_decode($data->winners);
             $items_per_row = 5;
             $row_count = ceil(count($data->array_numbers) / $items_per_row);
             $provincias = Provincias::all();
@@ -177,6 +179,9 @@ class TalonariosController extends Controller
             ->select('pagos.*', 'participants.ci', 'participants.name', 'participants.lastname', 'participants.phone')
             ->where('pagos.talonario_id', $data->id)
             ->get();
+
+            //var_dump($data->winners);
+            //exit;
 
             $data->array_numbers = json_encode($data->array_numbers);
             return view('talonarios.show', compact('data', 'items_per_row', 'row_count', 'provincias','pagos'));
@@ -620,7 +625,7 @@ class TalonariosController extends Controller
 
             // 1. Filtrar elementos con status "free" y winner false
             $freeElements = array_filter($new_array, function($item) {
-                return $item['status'] === 'free' && $item['winner'] === false;
+                return  $item['winner'] === false;
             });
 
             // 2. Mezclar los elementos libres y seleccionar 10
@@ -696,6 +701,7 @@ class TalonariosController extends Controller
         if(!empty($talonario)){
             $new_array = json_decode($talonario->array_numbers);
             $take_numbers = json_decode($request->numbers);
+            $great = '';
         
             foreach($take_numbers as $key => $take_number){
                 foreach($new_array as $numero){
@@ -709,12 +715,16 @@ class TalonariosController extends Controller
                             }else{
                                 $numero->status = "winner";
                             }
-                            
+
+                          $great = $numero;
 
                     }
                 }
             }
             $talonario->array_numbers = json_encode($new_array);
+            $winners = json_decode($talonario->winners);
+            array_push($winners, $great);
+            $talonario->winners = json_encode($winners);
             //$talonario->status = 0;
             $talonario->save();
 

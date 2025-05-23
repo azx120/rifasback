@@ -75,7 +75,7 @@
                 <div class="col-md-6">
                   
                   <button class="btn waves-effect waves-light btn-sm btn-info" id="addGallery"><i class="bi bi-plus h3" style="color: #ffff;" ></i></button>
-                  <input id="counterGallery" name="counterGallery" value="0"/>
+                  <input type="hidden" id="counterGallery" name="counterGallery" value="0"/>
                 </div>
 
                 <!-- Botón de Envío -->

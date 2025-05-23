@@ -46,7 +46,7 @@
                           </button>
                           <ul class="dropdown-menu">
                             
-                              <li><button class="btn get-winner" id_tal="{{$rifa->id}}">Intantaneros</button></li>
+                              <li><button class="btn get-winner" id_tal="{{$rifa->id}}">Instantaneos</button></li>
                               <li><a class="dropdown-item" href="{{ url('talonarios/' . $rifa->id . '/selecionar-ganadores') }}">Gran Ganador</a></li>
                               <!-- <li><button class="btn get-great-winner" id_tal="{{$rifa->id}}">Gran Ganador</button></li>-->
                           </ul>

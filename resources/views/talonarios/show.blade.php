@@ -157,7 +157,7 @@
         <div class="card-body">
         <h5 class="card-title">Numeros de Talonario</h5>
         <div class="table-responsive">
-            <div class="pagination" id="pagination"></div>
+            <div class="pagination" style="visibility:hidden;" id="pagination"></div>
             
             <div class="number-grid" id="numberGrid"></div>
             
@@ -169,7 +169,7 @@
                 @csrf
                 <input type="text" class="form-control form-control-sm" id="selectedNumbers" name='numbers' readonly required>
                 <input type="hidden" class="form-control form-control-sm" value='{{$data->id}}' name='id' required>
-                <input type="" class="form-control form-control-sm" value='' name='id_tra' id="id_tra">
+                <input type="hidden" class="form-control form-control-sm" value='' name='id_tra' id="id_tra">
                 <div class="col-md-6 mt-3 mb-3">
                     <label for="selectedNumbers" class="form-label form-label-sm" >Nombre:</label>
                     <input type="text" class="form-control form-control-sm" id="name" name='name' required>
@@ -209,6 +209,18 @@
                     <button class="btn btn-primary">Guardar</button>
                 </div>
             </form>
+        </div>
+        <div class="">
+            <p>Numeros Ganadores:</p>
+        </div>  
+        <div class="d-flex flex-wrap gap-2">
+            @foreach($data->winners as $winner)
+                @if($winner->status == "winner plus")
+                    <a type="button" class="btn btn-warning" @if($winner->participant != '') href="{{ url('participantes/' . $winner->participant . '/ver-participante-cedula') }}" @endif>{{$winner->id}} 👑</a>
+                @else 
+                    <a type="button" class="btn btn-secondary" @if($winner->participant != '') href="{{ url('participantes/' . $winner->participant . '/ver-participante-cedula') }}" @endif>{{$winner->id}} 👑</a>
+                @endif
+            @endforeach
         </div>
         <table class="table datatable">
             <thead>

@@ -157,7 +157,7 @@
         <div class="card-body">
         <h5 class="card-title">Numeros de Talonario</h5>
         <div class="table-responsive">
-            <div class="pagination" id="pagination"></div>
+            <div class="pagination" style="visibility:hidden;" id="pagination"></div>
             
             <div class="number-grid" id="numberGrid"></div>
             

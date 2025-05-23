@@ -106,7 +106,7 @@ class PHPMailerController extends Controller {
                                     </style>
                                 </head>
                                 <body>
-                                    <h1>Hola! '.$data['names'].' te enviamos un correo con la siguienete información.</h1>
+                                    <h1>Hola! '.$data['names'].' te enviamos un correo con la siguiente información.</h1>
                                     
                                     <div class="order-info">
                                         <div class="info-row">

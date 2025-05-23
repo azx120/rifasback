@@ -81,7 +81,8 @@
             <div class="col-md-6">
               <select class="form-control @error('rol') is-invalid @enderror" name="rol" id="rol">
                   <option value="" hidden>Seleccione un rol</option>
-                  <option value="ADMIN" @if($data->rol == 'USER')selected @endif>Administrador</option>     
+                  <option value="ADMIN" @if($data->rol == 'ADMIN')selected @endif>Administrador</option> 
+                  <option value="COLABORADOR" @if($data->rol == 'COLABORADOR')selected @endif>Colaborador</option>    
               </select>
               @if ($errors->has('rol'))
                   <div class="text-danger">
